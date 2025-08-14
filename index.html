@@ -16,7 +16,7 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        overflow: hidden; /* so text doesn't cause scrollbars */
+        overflow: hidden;
     }
 
     img {
@@ -32,7 +32,6 @@
         z-index: 1;
     }
 
-    /* Flying text layer */
     .flying-text-container {
         position: fixed;
         top: 0;
@@ -40,7 +39,7 @@
         width: 100%;
         height: 100%;
         overflow: hidden;
-        pointer-events: none; /* so clicks pass through */
+        pointer-events: none;
         z-index: 0;
     }
 
@@ -52,12 +51,12 @@
         animation: fly linear forwards;
     }
 
+    /* Correct direction: right → left */
     @keyframes fly {
         from { transform: translateX(100%); }
         to { transform: translateX(-100%); }
     }
 
-    /* Update Log */
     .update-log {
         position: fixed;
         bottom: 10px;
@@ -123,7 +122,6 @@ function toggleLog() {
     header.textContent = log.classList.contains("open") ? "Update Log ▲" : "Update Log ▼";
 }
 
-// Danmaku style texts
 const messages = [
     "Go Redskins!", "Donna High!", "Pride!", "BilliBilli!", "🏫", 
     "School Spirit!", "Class of 2025!", "🎓", "Victory!", "📚"
@@ -135,10 +133,9 @@ function spawnFlyingText() {
     text.className = "flying-text";
     text.textContent = messages[Math.floor(Math.random() * messages.length)];
 
-    // Random styles
-    const topPosition = Math.random() * 90; // vh
+    const topPosition = Math.random() * 90;
     const color = `hsl(${Math.random() * 360}, 80%, 60%)`;
-    const speed = 5 + Math.random() * 5; // seconds
+    const speed = 5 + Math.random() * 5;
 
     text.style.top = `${topPosition}vh`;
     text.style.color = color;
@@ -146,13 +143,11 @@ function spawnFlyingText() {
 
     container.appendChild(text);
 
-    // Remove after animation
     setTimeout(() => {
         container.removeChild(text);
     }, speed * 1000);
 }
 
-// Spawn new text every 500ms
 setInterval(spawnFlyingText, 500);
 </script>
 </body>
